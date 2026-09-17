@@ -1,0 +1,53 @@
+.assistant-toggle {
+    position: fixed; bottom: 26px; right: 26px; z-index: 1100;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    box-shadow: 0 16px 32px -8px rgba(23,63,194,0.55), inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: transform 0.3s var(--ease);
+}
+.assistant-toggle:hover { transform: scale(1.07); }
+.assistant-toggle .ping {
+    position: absolute; top: -3px; right: -3px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--success); border: 2px solid var(--white);
+}
+
+.assistant-panel {
+    position: fixed; bottom: 100px; right: 26px; z-index: 1100;
+    width: 320px; max-width: calc(100vw - 40px);
+    background: var(--white); border-radius: 16px; box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border); overflow: hidden;
+    transform: translateY(16px) scale(0.97); opacity: 0; pointer-events: none;
+    transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.assistant-panel.open { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+
+.assistant-head {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white); padding: 18px 20px; display: flex; align-items: center; gap: 12px;
+}
+.assistant-head strong { display: block; font-size: 0.95rem; }
+.assistant-head span { font-size: 0.78rem; opacity: 0.85; }
+
+.assistant-body { padding: 18px 20px; max-height: 320px; overflow-y: scroll; scrollbar-gutter: stable; display: flex; flex-direction: column; gap: 12px; }
+.visual-typing { display: inline-flex; gap: 4px; align-self: flex-start; padding: 12px 14px; background: var(--light); border-radius: 11px; border-bottom-left-radius: 3px; }
+.visual-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--gray); animation: typingDot 1.2s infinite; }
+.visual-typing span:nth-child(2) { animation-delay: 0.15s; }
+.visual-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes typingDot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
+.assistant-msg { background: var(--light); padding: 10px 14px; border-radius: 10px; border-bottom-left-radius: 3px; font-size: 0.78rem; max-width: 90%; }
+.assistant-msg.user { background: var(--primary); color: var(--white); align-self: flex-end; border-bottom-left-radius: 10px; border-bottom-right-radius: 3px; }
+
+.assistant-quick { padding: 0 20px 18px; display: flex; flex-direction: column; gap: 8px; }
+.assistant-quick button {
+    text-align: left; background: var(--light); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 14px; font-size: 0.76rem; cursor: pointer; font-family: inherit; color: var(--dark);
+    transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.assistant-quick button:hover { border-color: var(--primary); background: rgba(37,99,235,0.06); }
+
+@media (max-width: 768px) {
+    .assistant-panel { right: 16px; bottom: 92px; }
+    .assistant-toggle { right: 16px; bottom: 16px; }
+}

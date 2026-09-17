@@ -1,0 +1,47 @@
+.hours-ticker {
+    width: 100%; height: var(--ticker-h);
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary), var(--primary-dark));
+    color: var(--white);
+    white-space: nowrap;
+}
+.hours-ticker-track {
+    display: flex;
+    min-width: max-content;
+    height: 100%;
+    align-items: center;
+    font-size: 0.76rem;
+    font-weight: 600;
+    animation: hoursScroll 50s linear infinite;
+}
+.hours-ticker-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 56px;
+    /* The trailing space is included in both halves of the animation. */
+    padding-right: 56px;
+}
+.hours-ticker-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.hours-ticker-track .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34D399;
+    box-shadow: 0 0 8px #34D399;
+}
+.hours-ticker-track .status-dot[data-open="false"] {
+    background: #F87171;
+    box-shadow: 0 0 8px #F87171;
+}
+@keyframes hoursScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hours-ticker-track { animation-duration: 0.01ms !important; }
+}
